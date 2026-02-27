@@ -1,45 +1,50 @@
-# Rule Builder Demo
+# RuleForge Meta — Demo
 
 Visual drag-and-drop rule builder for Meta ad account automation.
 
-## 🚀 Live Demo
+## Live Demo
 
-**GitHub Pages:** https://YOUR-USERNAME.github.io/rule-builder-demo/
+**GitHub Pages:** https://borschcode.github.io/ruleforge-meta/
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - Vue 3 (Composition API)
-- Vue Router
-- Tailwind CSS
-- VueDraggable
+- Tailwind CSS v4
 - Vite
 
-## 📦 Local Development
+## Local Development
 
-### Demo (Static Site)
 ```bash
-cd demo
 npm install
 npm run dev
 ```
 
-### Laravel + Inertia (Full App)
-```bash
-cd laravel-app
-composer install
-npm install
-php artisan serve  # Terminal 1
-npm run dev        # Terminal 2
+Open **http://localhost:5173/demo.html** — note the explicit `/demo.html` path, not just `/`.
+
+> **Why `/demo.html`?** In dev mode Vite serves the raw source. The entry point is `demo.html` at the project root, so you must navigate to it explicitly. On GitHub Pages the built `index.html` is served automatically.
+
+## Deployment
+
+Pushing to `main` triggers GitHub Actions → builds → deploys to `gh-pages` branch automatically.
+
+```
+main branch push
+  → npm run build:demo   (Vite builds to demo/, renames demo.html → index.html)
+  → peaceiris/actions-gh-pages deploys demo/ to gh-pages branch
+  → GitHub Pages serves at /ruleforge-meta/
 ```
 
-## 🎯 Features
+### Manual deploy (optional)
 
-- ✅ Drag & drop condition blocks
-- ✅ Drag & drop action blocks
-- ✅ AND/OR logic connectors
-- ✅ Live preview of matches
-- ✅ Responsive UI
-- ✅ Static demo on GitHub Pages
+```bash
+npm install --save-dev gh-pages   # one-time
+npm run deploy
+```
 
-## 📄 License
+### GitHub Pages repo settings
 
+Go to **Settings → Pages** and set:
+- **Source:** Deploy from a branch
+- **Branch:** `gh-pages` / `/ (root)`
+
+No extra secrets needed — the workflow uses the automatic `GITHUB_TOKEN`.
