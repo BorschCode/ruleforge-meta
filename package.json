@@ -5,6 +5,8 @@
     "scripts": {
         "build": "vite build",
         "build:ssr": "vite build && vite build --ssr",
+        "build:demo": "vite build --config vite.demo.config.ts && mv demo/demo.html demo/index.html",
+        "deploy": "npm run build:demo && gh-pages -d demo",
         "dev": "vite",
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",
